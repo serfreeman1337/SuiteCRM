@@ -95,6 +95,23 @@ class Filter
     }
 
     /**
+     * Only return deleted records if they were explicitly requested
+     * @deprecated
+     * @param array $params
+     * @return array
+     */
+    protected function addDeletedParameter(array $params)
+    {
+        if (!array_key_exists('deleted', $params)) {
+            $params['deleted'] = [
+                'eq' => 0
+            ];
+        }
+
+        return $params;
+    }
+
+    /**
      * @param string $op
      *
      * @throws \InvalidArgumentException When the given operator is invalid.
